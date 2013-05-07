@@ -10,6 +10,6 @@ void free_env(t_env *env)
       free(env->value);
       last = env;
       env = env->next;
-      free(env);
+      free(last);
     }
 }
