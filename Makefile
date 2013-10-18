@@ -1,11 +1,13 @@
 NAME=	mysh
 CC=	gcc
 CFLAGS=	-W -Wall -g
-SRC=	main.c		\
-	mysh.c		\
-	env/aff_env.c	\
-	env/get_env.c	\
-	env/free_env.c
+SRC=	main.c			\
+	mysh.c			\
+	list/aff_list.c		\
+	list/add_to_list.c	\
+	list/free_list.c 	\
+	str/parse_str.c		\
+	env/get_env.c
 OBJ=	$(SRC:.c=.o)
 RM=	rm -fv
 

@@ -1,16 +1,22 @@
 #ifndef __MYSH__
 #define __MYSH__
 
-typedef struct s_env
+#define READ_SIZE	255
+
+typedef struct s_list
 {
   char		*value;
-  struct s_env	*next;
-}	t_env;
+  struct s_list	*next;
+}	t_list;
 
-void	mysh(t_env *env);
-void	aff_env(t_env * env);
-void	free_env(t_env *env);
+void	mysh(t_list *env);
+void	aff_list(t_list *list);
+void	free_list(t_list *list);
 
-t_env	*get_env(char **env);
+char	*epur_str(char *str);
+
+t_list	*parse_str(char *str);
+t_list	*get_env(char **env);
+t_list	*add_to_list(char *value, t_list *list);
 
 #endif

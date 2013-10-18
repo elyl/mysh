@@ -2,9 +2,9 @@
 
 int	main(int argc, char **argv, char **env)
 {
-  t_env	*environ;
+  t_list	*environ;
 
   environ = get_env(env);
   mysh(environ);
-  free_env(environ);
+  free_list(environ);
 }

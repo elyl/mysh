@@ -2,20 +2,20 @@
 #include <string.h>
 #include "../mysh.h"
 
-t_env	*get_env(char **environ)
+t_list	*get_env(char **environ)
 {
-  int	i;
-  t_env	*first;
-  t_env	*env;
+  int		i;
+  t_list	*first;
+  t_list	*env;
 
   i = 0;
-  first = malloc(sizeof(t_env));
+  first = malloc(sizeof(t_list));
   env = first;
   while (environ[i])
     {
       if (i != 0)
 	{
-	  env->next = malloc(sizeof(t_env));
+	  env->next = malloc(sizeof(t_list));
 	  env = env->next;
 	  env->next = NULL;
 	}
