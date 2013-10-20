@@ -7,11 +7,12 @@ void mysh(t_list *env)
   int		s;
   t_list	*st;
 
-  //aff_list(env);
+  write(1, "$>", 2);
   while ((s = read(0, &com, READ_SIZE)) != -1)
     {
       com[s - 1] = '\0';
       st = parse_str(&com[0]);
-      aff_list(st);
+      run_com(st, env);
+      write(1, "$>", 2);
     }
 }
