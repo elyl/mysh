@@ -10,11 +10,16 @@ SRC=	main.c				\
 	list/change_str_in_list.c	\
 	list/free_list.c 		\
 	str/parse_str.c			\
-	str/search_char.c		\
+	str/count_char.c		\
 	env/get_env.c			\
+	env/get_path.c			\
+	exec/exec.c			\
+	exec/check_file.c		\
 	exec/run_com.c			\
 	built_in/cd.c			\
-	built_in/clear.c
+	built_in/quit.c			\
+	built_in/clear.c		\
+	debug/print_tab.c
 OBJ=	$(SRC:.c=.o)
 RM=	rm -fv
 

@@ -5,7 +5,6 @@
 void change_str_in_list(t_list *dest, char *str)
 {
   char	*tmp;
-  int	len;
 
   tmp = dest->value;
   if (str[0] == '/')
