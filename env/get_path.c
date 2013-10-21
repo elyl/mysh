@@ -23,7 +23,7 @@ char	**get_path(t_list *env)
       path[i] = malloc((strlen(base) - strlen(tmp) + 2) * sizeof(char));
       *tmp = '\0';
       strcpy(path[i], base);
-      base = tmp++;
+      base = ++tmp;
       i++;
     }
   return (path);
