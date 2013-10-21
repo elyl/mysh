@@ -17,7 +17,7 @@ void run_com(t_list *list, t_list *env)
   else if ((tmp = check_file(list->value, env)) != NULL)
     {
       exec(tmp, list, env);
-      //printf("%s\n", tmp);
+      printf("%s\n", tmp);
     }
   else
     printf("No such file or directory\n");

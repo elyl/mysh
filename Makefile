@@ -9,6 +9,8 @@ SRC=	main.c				\
 	list/change_in_list.c		\
 	list/change_str_in_list.c	\
 	list/free_list.c 		\
+	list/list_to_tab.c		\
+	list/free_tab.c			\
 	str/parse_str.c			\
 	str/count_char.c		\
 	env/get_env.c			\
