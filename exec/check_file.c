@@ -14,18 +14,16 @@ char	*check_file(char *name, t_list *env)
 
   i = 0;
   path = get_path(env);
-  print_tab(path);
   while (path[i] != NULL)
     {
       tmp = malloc((strlen(name) + strlen(path[i]) + 2) * sizeof(char));
       strcpy(tmp, path[i]);
       strcat(tmp, "/");
       strcat(tmp, name);
-      //printf("%s\n", tmp);
       if (stat(tmp, &buf) != -1 && buf.st_mode & S_IFREG)
 	return (tmp);
       free(tmp);
       i++;
     }
-  return (NULL);
+  return ((stat(name, &buf) != -1 && buf.st_mode & S_IFREG) ? name : NULL);
 }
