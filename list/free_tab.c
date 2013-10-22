@@ -7,10 +7,7 @@ void free_tab(char **tab)
 
   i = 0;
   while (tab[i] != NULL)
-    {
-      printf("%d\n", i);
-      free(tab[i++]);
-    }
+    free(tab[i++]);
   free(tab[i]);
   free(tab);
 }
