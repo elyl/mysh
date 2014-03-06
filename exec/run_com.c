@@ -2,21 +2,23 @@
 #include <stdio.h>
 #include "../mysh.h"
 
-void run_com(t_list *list, t_list *env)
+void run_com(t_com *com, t_list *env)
 {
   char	*tmp;
 
-  if (strcmp(list->value, "cd") == 0)
-    cd(list, env);
-  else if (strcmp(list->value, "env") == 0)
+  if (com == NULL)
+    return;
+  if (strcmp(com->com->value, "cd") == 0)
+    cd(com, env);
+  else if (strcmp(com->com->value, "env") == 0)
     aff_list(env);
-  else if (strcmp(list->value, "clear") == 0)
+  else if (strcmp(com->com->value, "clear") == 0)
     clear();
-  else if (strcmp(list->value, "exit") == 0)
-    quit(list, env);
-  else if ((tmp = check_file(list->value, env)) != NULL)
+  else if (strcmp(com->com->value, "exit") == 0)
+    quit(com, env);
+  else if ((tmp = check_file(com->com->value, env)) != NULL)
     {
-      exec(tmp, list, env);
+      exec(tmp, com, env);
       printf("%s\n", tmp);
     }
   else

@@ -1,0 +1,22 @@
+#include <string.h>
+#include "../mysh.h"
+
+char *clean_string(char *str)
+{
+  int	i;
+  int	f;
+
+  i = 0;
+  f = 0;
+  while (str[i])
+    {
+      if (str[i] == '|')
+	f = 1;
+      if (str[i] == ' ' && f == 1)
+	strcat(str, &str[i]);
+      else 
+	f = 0;
+      ++i;
+    }
+  return (str);
+}

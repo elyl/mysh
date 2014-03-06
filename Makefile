@@ -13,6 +13,7 @@ SRC=	main.c				\
 	list/free_tab.c			\
 	str/parse_str.c			\
 	str/count_char.c		\
+	str/clean_string.c		\
 	env/get_env.c			\
 	env/get_path.c			\
 	exec/exec.c			\
@@ -32,6 +33,6 @@ clean:
 	@$(RM) $(OBJ)
 
 fclean:
-	@$(RM) $(OBJ)
+	@$(RM) $(NAME)
 
 re: fclean clean $(NAME)

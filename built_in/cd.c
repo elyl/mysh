@@ -6,9 +6,9 @@
 #include <sys/stat.h>
 #include "../mysh.h"
 
-void cd(t_list *list, t_list *env)
+void cd(t_com *com, t_list *env)
 {
-  char		tmp[255];
+  /*  char		tmp[255];
   char		*tmp2;
   struct stat	buf;
 
@@ -40,5 +40,5 @@ void cd(t_list *list, t_list *env)
     }
   tmp2 = strchr(get_from_list("PWD", env)->value, '=');
   tmp2++;
-  printf("Directory changed to %s.\n", tmp2);
+  printf("Directory changed to %s.\n", tmp2);*/
 }
