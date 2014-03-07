@@ -44,8 +44,10 @@ int	count_char(char *str, char c);
 t_list	*get_env(char **list);
 t_list	*add_to_list(char *value, t_list *list);
 t_list	*get_from_list(const char *name, t_list *list);
+t_list	*new_list_elem();
 
 t_com	*parse_str(char *str);
+t_com	*new_com_elem();
 
 void	print_tab(char **tab);
 

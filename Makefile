@@ -11,6 +11,8 @@ SRC=	main.c				\
 	list/free_list.c 		\
 	list/list_to_tab.c		\
 	list/free_tab.c			\
+	list/new_list_elem.c		\
+	list/new_com_elem.c		\
 	str/parse_str.c			\
 	str/count_char.c		\
 	str/clean_string.c		\

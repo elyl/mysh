@@ -21,11 +21,15 @@ void exec(char *tmp, t_com *com, t_list *env)
   if ((pid = fork()) == 0)
     {
       if (com->op == OP_PIPE)
-	close(fd[0]);
-      if (com->op == OP_NULL)
-	close(com->fd[1]);
-      dup2(1, fd[1]);
-      dup2(0, fd[0]);
+	{
+	  printf("Changing stdout: new->%d\n", com->fd[1]);
+	  dup2(1, com->fd[1]);
+	  //close(fd[0]);
+	}
+      //if (com->op == OP_NULL)
+	//close(com->fd[1]);
+      printf("%d %d\n", com->fd[0], com->fd[1]);
+      dup2(0, com->fd[0]);
       argv = list_to_tab(com->com);
       environ = list_to_tab(env);
       execve(tmp, argv, environ);
