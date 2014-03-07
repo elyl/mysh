@@ -3,9 +3,10 @@
 
 #define READ_SIZE	255
 
-#define OP_NULL		0
-#define OP_PIPE		1
-#define OP_AND		2
+#define OP_NULL		0x00
+#define OP_PIPE		0x01
+#define OP_AND		0x02
+#define OP_BG		0x04
 
 typedef struct s_list
 {

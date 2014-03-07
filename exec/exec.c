@@ -7,11 +7,11 @@
 void exec(char *tmp, t_com *com, t_list *env)
 {
   int	pid;
-  int	fd[2];
+  int	fd[2] = {0, 0};
   char	**argv;
   char	**environ;
 
-  if (com->op == OP_PIPE)
+  if (com->op & OP_PIPE)
     {
       pipe(fd);
       com->next->fd[0] = fd[0];
@@ -20,16 +20,19 @@ void exec(char *tmp, t_com *com, t_list *env)
     }
   if ((pid = fork()) == 0)
     {
-      if (com->op == OP_PIPE)
+      if (com->op & OP_PIPE)
 	{
 	  printf("Changing stdout: new->%d\n", com->fd[1]);
-	  dup2(1, com->fd[1]);
-	  //close(fd[0]);
+	  close(1);
+	  close(fd[0]);
+	  dup(com->fd[1]);
 	}
-      //if (com->op == OP_NULL)
-	//close(com->fd[1]);
-      printf("%d %d\n", com->fd[0], com->fd[1]);
-      dup2(0, com->fd[0]);
+      else if (com->fd[0] != 0)
+	{
+	  close(0);
+	  close(com->fd[1]);
+	  dup(com->fd[0]);
+	}
       argv = list_to_tab(com->com);
       environ = list_to_tab(env);
       execve(tmp, argv, environ);
@@ -37,8 +40,11 @@ void exec(char *tmp, t_com *com, t_list *env)
   else if (pid != -1)
     {
       run_com(com->next, env);
-      /*close(fd[0]);
-      close(fd[1]);*/
+      if (fd[0] != 0)
+	{
+	  close(fd[0]);
+	  close(fd[1]);
+	}
       wait(NULL);
     }
   else

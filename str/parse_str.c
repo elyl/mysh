@@ -19,8 +19,8 @@ t_com	*parse_str(char *str)
       if (str[i] == '|')
 	{
 	  current->next = new_com_elem();
+	  current->op |= OP_PIPE;
 	  current = current->next;
-	  current->op = OP_PIPE;
 	}
       else if (str[i] == ' ' && l != 0)
 	{
