@@ -13,7 +13,6 @@ void mysh(t_list *env)
       com[s - 1] = '\0';
       st = parse_str(clean_string(&com[0]));
       run_com(st, env);
-      write(1, "b", 1);
       write(1, "$>", 2);
     }
 }

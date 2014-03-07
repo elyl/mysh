@@ -16,19 +16,20 @@ void exec(char *tmp, t_com *com, t_list *env)
       pipe(fd);
       com->next->fd[0] = fd[0];
       com->next->fd[1] = fd[1];
-      com->fd[1] = fd[1];
     }
   if ((pid = fork()) == 0)
     {
+      printf("fd: %d %d\n", com->fd[0], com->fd[1]);
       if (com->op & OP_PIPE)
 	{
-	  printf("Changing stdout: new->%d\n", com->fd[1]);
+	  printf("Closing : 1, %d; switching to: %d\n", fd[0], com->fd[1]);
 	  close(1);
 	  close(fd[0]);
-	  dup(com->fd[1]);
+	  dup(fd[1]);
 	}
-      else if (com->fd[0] != 0)
+      if (com->fd[0] != 0)
 	{
+	  printf("Closing : 0, %d; switching to: %d\n", com->fd[1], com->fd[0]);
 	  close(0);
 	  close(com->fd[1]);
 	  dup(com->fd[0]);
@@ -45,7 +46,8 @@ void exec(char *tmp, t_com *com, t_list *env)
 	  close(fd[0]);
 	  close(fd[1]);
 	}
-      wait(NULL);
+      if (!(com->op & OP_BG) && com->fd[0] == 0)
+	wait(NULL);
     }
   else
     printf("An error occured while running the program\n");
