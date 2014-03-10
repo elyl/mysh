@@ -19,20 +19,18 @@ void exec(char *tmp, t_com *com, t_list *env)
     }
   if ((pid = fork()) == 0)
     {
-      printf("fd: %d %d\n", com->fd[0], com->fd[1]);
+      //fprintf(stderr, "fd: %d %d\n", com->fd[0], com->fd[1]);
       if (com->op & OP_PIPE)
 	{
-	  printf("Closing : 1, %d; switching to: %d\n", fd[0], com->fd[1]);
 	  close(1);
 	  close(fd[0]);
-	  dup(fd[1]);
+	  fprintf(stderr, "Closing : 1, %d; switching to: %d; newfd: %d\n", fd[0], fd[1], dup(fd[1]));
 	}
       if (com->fd[0] != 0)
 	{
-	  printf("Closing : 0, %d; switching to: %d\n", com->fd[1], com->fd[0]);
 	  close(0);
 	  close(com->fd[1]);
-	  dup(com->fd[0]);
+	  fprintf(stderr, "Closing : 0, %d; switching to: %d; newfd: %d\n", com->fd[1], com->fd[0], dup(com->fd[0]));
 	}
       argv = list_to_tab(com->com);
       environ = list_to_tab(env);
@@ -41,14 +39,16 @@ void exec(char *tmp, t_com *com, t_list *env)
   else if (pid != -1)
     {
       run_com(com->next, env);
+      sleep(1);
       if (fd[0] != 0)
 	{
+	  fprintf(stderr, "Closing: %d, %d\n", fd[0], fd[1]);
 	  close(fd[0]);
 	  close(fd[1]);
 	}
       if (!(com->op & OP_BG) && com->fd[0] == 0)
 	{
-	  printf("waiting...\n");
+	  fprintf(stderr, "waiting...\n");
 	  waitpid(pid, NULL, 0);
 	}
     }
