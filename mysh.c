@@ -11,8 +11,11 @@ void mysh(t_list *env)
   while ((s = read(0, &com, READ_SIZE)) != -1)
     {
       com[s - 1] = '\0';
-      st = parse_str(clean_string(&com[0]));
-      run_com(st, env);
+      if (s > 1)
+	{
+	  st = parse_str(clean_string(&com[0]));
+	  run_com(st, env);
+	}
       write(1, "$>", 2);
     }
 }

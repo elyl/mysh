@@ -39,5 +39,5 @@ t_com	*parse_str(char *str)
       buffer[l] = '\0';
       add_to_list(&buffer[0], current->com);
     }
-  return (com);
+  return (check_op(com));
 }

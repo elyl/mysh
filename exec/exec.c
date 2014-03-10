@@ -47,7 +47,10 @@ void exec(char *tmp, t_com *com, t_list *env)
 	  close(fd[1]);
 	}
       if (!(com->op & OP_BG) && com->fd[0] == 0)
-	wait(NULL);
+	{
+	  printf("waiting...\n");
+	  waitpid(pid, NULL, 0);
+	}
     }
   else
     printf("An error occured while running the program\n");

@@ -49,6 +49,7 @@ t_list	*new_list_elem();
 
 t_com	*parse_str(char *str);
 t_com	*new_com_elem();
+t_com	*check_op(t_com *com);
 
 void	print_tab(char **tab);
 

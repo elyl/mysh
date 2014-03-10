@@ -16,6 +16,7 @@ SRC=	main.c				\
 	str/parse_str.c			\
 	str/count_char.c		\
 	str/clean_string.c		\
+	str/check_op.c			\
 	env/get_env.c			\
 	env/get_path.c			\
 	exec/exec.c			\
